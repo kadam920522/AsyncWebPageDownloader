@@ -1,0 +1,3 @@
+http://valid.url
+notvalid/url
+http://another.valid.url

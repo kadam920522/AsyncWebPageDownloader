@@ -1,0 +1,5 @@
+https://www.yahoo.com/
+https://www.youtube.com/
+https://www.nosuch.domain.com/
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Length
+https://www.amazon.nl/

@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="AsyncWebPageDownloader/AsyncWebPageDownloader.csproj" />
+  <Project Path="AsyncWebPageDownloaderTests/AsyncWebPageDownloaderTests.csproj" />
 </Solution>
