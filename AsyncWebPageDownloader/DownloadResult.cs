@@ -1,6 +1,6 @@
 namespace AsyncWebPageDownloader;
 
-public sealed class DownloadResult
+internal sealed class DownloadResult
 {
     public required Uri Url { get; init; }
     public HttpResponseMessage? HttpResponseMessage { get; init; }

@@ -1,7 +1,6 @@
 ﻿using System.CommandLine;
-using AsyncWebPageDownloader;
 
-namespace AsyncWebPageDownloaderTests;
+namespace AsyncWebPageDownloader.Test;
 
 public class CliTests
 {
