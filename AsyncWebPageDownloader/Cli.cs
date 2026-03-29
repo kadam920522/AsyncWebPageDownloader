@@ -10,9 +10,9 @@ internal static partial class Cli
     
     private static readonly Argument<string[]> UrlsArgument = new("URLs")
     {
-        Description = "Web page URLs to download",
+        Description = "Web page URLs to download. Example: https://www.google.com",
         Validators = { ValidateUrls },
-        Arity = ArgumentArity.ZeroOrMore
+        Arity = ArgumentArity.ZeroOrMore,
     };
     
     private static readonly Option<FileInfo?> FileOption = new("--file")
@@ -30,7 +30,7 @@ internal static partial class Cli
         Arity = ArgumentArity.ZeroOrOne
     };
     
-    private static readonly RootCommand RootCommand = new("Async Web Page Downloader")
+    private static readonly RootCommand RootCommand = new("AsyncWebPageDownloader is a command line tool to download multiple web pages asynchronously.")
     {
         Arguments =
         {
