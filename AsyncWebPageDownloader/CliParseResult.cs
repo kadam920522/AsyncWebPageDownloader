@@ -2,5 +2,5 @@ namespace AsyncWebPageDownloader;
 
 internal sealed record CliParseResult(
     bool IsSuccessful, 
-    IReadOnlyList<Uri> ParsedUrls,
+    IReadOnlyCollection<Uri> ParsedUrls,
     DirectoryInfo DestinationFolder);

@@ -26,6 +26,7 @@ internal static partial class Cli
     {
         Description = "Path to a folder where web pages will be saved",
         DefaultValueFactory = _ => new DirectoryInfo(Directory.GetCurrentDirectory()),
+        
         Arity = ArgumentArity.ZeroOrOne
     };
     
@@ -97,35 +98,34 @@ internal static partial class Cli
     private static bool IsUrlValid(string url) =>
         HttpUrlRegex.IsMatch(url) && Uri.TryCreate(url, UriKind.Absolute, out _);
     
-    private static IReadOnlyList<Uri> GetParsedUrls(ParseResult parseResult)
+    private static IReadOnlyCollection<Uri> GetParsedUrls(ParseResult parseResult)
     {
-        var urls = new List<Uri>();
+        var urls = new HashSet<Uri>();
 
         var urlArguments = parseResult.GetValue(UrlsArgument);
         if (urlArguments is not null)
         {
-            foreach (var url in urlArguments)
-            {
-                if (Uri.TryCreate(url, UriKind.Absolute, out var uri))
-                {
-                    urls.Add(uri);
-                }
-            }
+            AddParsedUrls(urls, urlArguments);
         }
 
         var urlsFileInfo = parseResult.GetValue(FileOption);
         if (urlsFileInfo is not null)
         {
-            foreach (var url in File.ReadLines(urlsFileInfo.FullName))
-            {
-                if (Uri.TryCreate(url, UriKind.Absolute, out var uri))
-                {
-                    urls.Add(uri);
-                }
-            }
+            AddParsedUrls(urls, File.ReadLines(urlsFileInfo.FullName));
         }
 
         return urls;
+    }
+
+    private static void AddParsedUrls(HashSet<Uri> parsedUrls, IEnumerable<string> urls)
+    {
+        foreach (var url in urls)
+        {
+            if (Uri.TryCreate(url, UriKind.Absolute, out var uri))
+            {
+                parsedUrls.Add(uri);
+            }
+        }
     }
 
     [GeneratedRegex(@"^(https?://)?([\w-]+(\.[\w-]+)+)(/[\w-./?%&=]*)?$", RegexOptions.IgnoreCase, "en-US")]
